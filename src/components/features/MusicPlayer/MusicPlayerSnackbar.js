@@ -1,6 +1,4 @@
 import React from "react";
-import IconButton from "../../utils/IconButton";
-import MusicPlayer from "./MusicPlayer";
 import { Snackbar } from "@mui/material";
 
 const MusicPlayerSnackbar = ({isMusicMode, isFocusedMode, onMouseLeave }) => {
@@ -13,12 +11,6 @@ const MusicPlayerSnackbar = ({isMusicMode, isFocusedMode, onMouseLeave }) => {
       horizontal: "right",
     }}
   >
-    <IconButton hidden={true} onMouseLeave={onMouseLeave}>
-      <MusicPlayer
-        disabled={!isMusicMode}
-        isZenMode={isFocusedMode}
-      ></MusicPlayer>
-    </IconButton>
   </Snackbar>
   );
 };

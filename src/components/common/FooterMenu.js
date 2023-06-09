@@ -10,12 +10,9 @@ import {
 import { Link } from "@mui/material";
 import {
   GITHUB_TOOLTIP_TITLE,
-  AUTHOR,
   GITHUB_REPO_LINK,
 } from "../../constants/Constants";
 import GitHubIcon from "@mui/icons-material/GitHub";
-
-
 
 const FooterMenu = ({
   themesOptions,
@@ -47,13 +44,6 @@ const FooterMenu = ({
             menuPlacement="top"
           ></Select>
 
-         
-        
-       
-          
-         
-         
-        
         
         </Box>
         { (
@@ -64,12 +54,6 @@ const FooterMenu = ({
               title={
                 <span style={{ whiteSpace: "pre-line", fontSize:"12px" }}>
                   {GITHUB_TOOLTIP_TITLE}
-                    <Link
-                      margin="inherit"
-                      href="https://muyangguo.xyz"
-                    >
-                      {AUTHOR}
-                    </Link>
                     <Link
                       margin="inherit"
                       href="https://github.com/amanpatel1527/touch_typing" 
@@ -92,12 +76,9 @@ const FooterMenu = ({
         {  (
           <Box display="block" flexDirection="row" className="bottom-info">
             <IconButton
-              href="https://github.com/amanpatel1527/TA-Session-Assignment"
+              href="https://github.com/amanpatel1527/touch_typing"
               color="inherit"
             >
-              {/* <span>
-                Ele Types <KeyboardAltIcon fontSize="small" />
-              </span> */}
             </IconButton>
           </Box>
         )}

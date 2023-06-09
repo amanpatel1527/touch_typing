@@ -2,7 +2,6 @@ import React, { useEffect, useState, useMemo } from "react";
 import useSound from "use-sound";
 import {
   wordsGenerator,
-  // chineseWordsGenerator,
 } from "../../../scripts/wordsGenerator";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import UndoIcon from "@mui/icons-material/Undo";
@@ -13,8 +12,6 @@ import Tooltip from "@mui/material/Tooltip";
 import useLocalPersistState from "../../../hooks/useLocalPersistState";
 import CapsLockSnackbar from "../CapsLockSnackbar";
 import Stats from "./Stats";
-import { Dialog } from "@mui/material";
-import DialogTitle from "@mui/material/DialogTitle";
 import {
   DEFAULT_COUNT_DOWN,
   COUNT_DOWN_90,
@@ -27,17 +24,13 @@ import {
   DEFAULT_DIFFICULTY_TOOLTIP_TITLE,
   HARD_DIFFICULTY_TOOLTIP_TITLE,
   ENGLISH_MODE,
-  // CHINESE_MODE,
-  ENGLISH_MODE_TOOLTIP_TITLE,
-  // CHINESE_MODE_TOOLTIP_TITLE,
   DEFAULT_DIFFICULTY_TOOLTIP_TITLE_CHINESE,
   HARD_DIFFICULTY_TOOLTIP_TITLE_CHINESE,
   RESTART_BUTTON_TOOLTIP_TITLE,
   REDO_BUTTON_TOOLTIP_TITLE,
   PACING_CARET,
   PACING_PULSE,
-  // PACING_CARET_TOOLTIP,
-  // PACING_PULSE_TOOLTIP,
+  
 } from "../../../constants/Constants";
 import { SOUND_MAP } from "../sound/sound";
 
@@ -77,28 +70,6 @@ const TypeBox = ({
   // Caps Lock
   const [capsLocked, setCapsLocked] = useState(false);
 
-  // tab-enter restart dialog
-  const [openRestart, setOpenRestart] = useState(false);
-
-  const EnterkeyPressReset = (e) => {
-    // press enter/or tab to reset;
-    if (e.keyCode === 13 || e.keyCode === 9) {
-      e.preventDefault();
-      setOpenRestart(false);
-      reset(countDownConstant, difficulty, language, false);
-    } // press space to redo
-    else if (e.keyCode === 32) {
-      e.preventDefault();
-      setOpenRestart(false);
-      reset(countDownConstant, difficulty, language, true);
-    } else {
-      e.preventDefault();
-      setOpenRestart(false);
-    }
-  };
-  const handleTabKeyOpen = () => {
-    setOpenRestart(true);
-  };
 
   // set up words state
   const [wordsDict, setWordsDict] = useState(() => {
@@ -330,7 +301,7 @@ const TypeBox = ({
     // disable tab key
     if (keyCode === 9) {
       e.preventDefault();
-      handleTabKeyOpen();
+
       return;
     }
 
@@ -561,13 +532,6 @@ const TypeBox = ({
     return "inactive-button";
   };
 
-  const getLanguageButtonClassName = (buttonLanguage) => {
-    if (language === buttonLanguage) {
-      return "active-button";
-    }
-    return "inactive-button";
-  };
-
   return (
     <div onClick={handleInputFocus}>
       <CapsLockSnackbar open={capsLocked}></CapsLockSnackbar>
@@ -594,35 +558,7 @@ const TypeBox = ({
           </div>
         </div>
       )}
-      {/* {language === CHINESE_MODE && (
-        <div className="type-box-chinese">
-          <div className="words">
-            {words.map((word, i) => (
-              <div key={i + "word"}>
-                <span
-                  key={i + "anchor"}
-                  className={getChineseWordKeyClassName(i)}
-                  ref={wordSpanRefs[i]}
-                >
-                  {" "}
-                  {wordsKey[i]}
-                </span>
-                <span key={i + "val"} className={getChineseWordClassName(i)}>
-                  {word.split("").map((char, idx) => (
-                    <span
-                      key={"word" + idx}
-                      className={getCharClassName(i, idx, char, word)}
-                    >
-                      {char}
-                    </span>
-                  ))}
-                  {getExtraCharsDisplay(word, i)}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      )} */}
+      
       <div className="stats">
         <Stats
           status={status}
@@ -747,21 +683,6 @@ const TypeBox = ({
                     </span>
                   </Tooltip>
                 </IconButton>
-                <IconButton>
-                  {" "}
-                  <span className="menu-separator"> | </span>{" "}
-                </IconButton>
-                <IconButton
-                  onClick={() => {
-                    reset(countDownConstant, difficulty, ENGLISH_MODE, false);
-                  }}
-                >
-                  <Tooltip title={ENGLISH_MODE_TOOLTIP_TITLE}>
-                    <span className={getLanguageButtonClassName(ENGLISH_MODE)}>
-                      change para
-                    </span>
-                  </Tooltip>
-                </IconButton>
               </Box>
             )}
           </Grid>
@@ -777,34 +698,6 @@ const TypeBox = ({
         value={currInput}
         onChange={(e) => UpdateInput(e)}
       />
-      <Dialog
-        PaperProps={{
-          style: {
-            backgroundColor: "transparent",
-            boxShadow: "none",
-          },
-        }}
-        open={openRestart}
-        onKeyDown={EnterkeyPressReset}
-      >
-        <DialogTitle>
-          <div>
-            <span className="key-note"> press </span>
-            <span className="key-type">Space</span>{" "}
-            <span className="key-note">to redo</span>
-          </div>
-          <div>
-            <span className="key-note"> press </span>
-            <span className="key-type">Tab</span>{" "}
-            <span className="key-note">/</span>{" "}
-            <span className="key-type">Enter</span>{" "}
-            <span className="key-note">to restart</span>
-          </div>
-          <span className="key-note"> press </span>
-          <span className="key-type">any key </span>{" "}
-          <span className="key-note">to exit</span>
-        </DialogTitle>
-      </Dialog>
     </div>
   );
 };

@@ -5,7 +5,7 @@ import { Tooltip } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Select from "../utils/Select";
 import {
- 
+
 } from "../../constants/Constants";
 import { Link } from "@mui/material";
 import {
@@ -17,17 +17,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 const FooterMenu = ({
   themesOptions,
   theme,
- 
-  toggleSoundMode,
   handleThemeChange,
-  toggleCoffeeMode,
-  isMusicMode,
-  isCoffeeMode,
-  gameMode,
-  handleGameModeChange,
-  isTrainerMode,
-  toggleTrainerMode,
- 
 }) => {
 
   return (
@@ -43,23 +33,21 @@ const FooterMenu = ({
             onChange={handleThemeChange}
             menuPlacement="top"
           ></Select>
-
-        
         </Box>
-        { (
+        {(
           <Box display="block" flexDirection="row">
 
 
             <Tooltip
               title={
-                <span style={{ whiteSpace: "pre-line", fontSize:"12px" }}>
+                <span style={{ whiteSpace: "pre-line", fontSize: "12px" }}>
                   {GITHUB_TOOLTIP_TITLE}
-                    <Link
-                      margin="inherit"
-                      href="https://github.com/amanpatel1527/touch_typing" 
-                    >
-                      {GITHUB_REPO_LINK}
-                    </Link>
+                  <Link
+                    margin="inherit"
+                    href="https://github.com/amanpatel1527/touch_typing"
+                  >
+                    {GITHUB_REPO_LINK}
+                  </Link>
                 </span>
               }
               placement="top-start"
@@ -73,7 +61,7 @@ const FooterMenu = ({
             </Tooltip>
           </Box>
         )}
-        {  (
+        {(
           <Box display="block" flexDirection="row" className="bottom-info">
             <IconButton
               href="https://github.com/amanpatel1527/touch_typing"

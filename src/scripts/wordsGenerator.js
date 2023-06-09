@@ -11,7 +11,6 @@ import {
   DEFAULT_WORDS_COUNT,
 } from "../constants/Constants";
 import { randomIntFromRange } from "./randomUtils";
-import { VOCAB_DICTIONARIES, DICTIONARY_SOURCE_CATALOG } from "../constants/DictionaryConstants";
 
 const wordsGenerator = (wordsCount, difficulty, languageMode) => {
   if (languageMode === ENGLISH_MODE) {
@@ -54,21 +53,10 @@ const chineseWordsGenerator = ( difficulty, languageMode) => {
         ChineseIdiomsList.push(COMMON_CHINESE_IDIOMS_WORDS[rand]);
       }
     }
-
     return ChineseIdiomsList;
-
   }
 };
 
-const wordsCardVocabGenerator = (vocabSource, chapter) => {
-  const wordsList = [];
-  const chapterCatalog = DICTIONARY_SOURCE_CATALOG[vocabSource];
-  const chapterStartIndex = chapterCatalog[chapter][0];
-  const chapterEndIndex = chapterCatalog[chapter][1];
-  for (let i = chapterStartIndex; i < chapterEndIndex + 1; i++) {
-    wordsList.push(VOCAB_DICTIONARIES[vocabSource][i]);
-  }
-  return wordsList;
-}
 
-export { wordsGenerator, chineseWordsGenerator, wordsCardVocabGenerator};
+
+export { wordsGenerator, chineseWordsGenerator};

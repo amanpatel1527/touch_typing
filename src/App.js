@@ -3,19 +3,16 @@ import { ThemeProvider } from "styled-components";
 import { defaultTheme, themesOptions } from "./style/theme";
 import { GlobalStyles } from "./style/global";
 import TypeBox from "./components/features/TypeBox/TypeBox";
-import SentenceBox from "./components/features/SentenceBox/SentenceBox";
 import Logo from "./components/common/Logo";
 import MusicPlayerSnackbar from "./components/features/MusicPlayer/MusicPlayerSnackbar";
 import FooterMenu from "./components/common/FooterMenu";
-import FreeTypingBox from "./components/features/FreeTypingBox";
 import {
   GAME_MODE,
   GAME_MODE_DEFAULT,
   GAME_MODE_SENTENCE,
 } from "./constants/Constants";
 import useLocalPersistState from "./hooks/useLocalPersistState";
-import DefaultKeyboard from "./components/features/Keyboard/DefaultKeyboard";
-import WordsCard from "./components/features/WordsCard/WordsCard";
+
 import {
   SOUND_MODE,
   soundOptions,
@@ -187,32 +184,10 @@ function App() {
               handleInputFocus={() => focusTextInput()}
             ></TypeBox>
           )}
-          {isSentenceGameMode && (
-            <SentenceBox
-              sentenceInputRef={sentenceInputRef}
-              isFocusedMode={isFocusedMode}
-              soundMode={soundMode}
-              soundType={soundType}
-              key="sentence-box"
-              handleInputFocus={() => focusSentenceInput()}
-            ></SentenceBox>
-          )}
-          {isCoffeeMode && !isTrainerMode && !isWordsCardMode && (
-            <FreeTypingBox
-              textAreaRef={textAreaRef}
-              soundMode={soundMode}
-              soundType={soundType}
-            />
-          )}
-          {isTrainerMode && !isCoffeeMode && !isWordsCardMode && (
-            <DefaultKeyboard
-              soundMode={soundMode}
-              soundType={soundType}
-            ></DefaultKeyboard>
-          )}
-          {isWordsCardMode && !isCoffeeMode && !isTrainerMode && (
-            <WordsCard soundMode={soundMode} soundType={soundType}></WordsCard>
-          )}
+          
+         
+         
+         
           <FooterMenu
             themesOptions={themesOptions}
             theme={theme}
